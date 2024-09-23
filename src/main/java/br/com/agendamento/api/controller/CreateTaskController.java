@@ -42,10 +42,7 @@ public class CreateTaskController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneTask(@PathVariable(value = "id") Long id){
         Optional<CreateTaskModel> createTaskModelOptional = createTaskService.findById(id);
-        if (!createTaskModelOptional.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found.");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(createTaskModelOptional.get());
+        return createTaskModelOptional.<ResponseEntity<Object>>map(createTaskModel -> ResponseEntity.status(HttpStatus.OK).body(createTaskModel)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found."));
     }
 
     @DeleteMapping("/id")
