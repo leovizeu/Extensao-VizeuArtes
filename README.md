@@ -1,4 +1,4 @@
-# ms-agendamento-tarefa -- Microservices em Springboot
+# Projeto de Extensão Vizeu Artes -- Microservices em Springboot
 
 ## Sumário
 
